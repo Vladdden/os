@@ -20,7 +20,7 @@ void pause(int);
 void drawLine(int, int, int, int, int, int);
 int paint();
 void clearkey();
-void change_size(int, char);
+int change_size(int, char);
 void change_form(int, int);
 void clava();
 
@@ -110,7 +110,7 @@ int start()
 }
 
 int paint (){ //1024*768
-	int size = 50, form,x = 600,y = 400, color = 0x000000;
+	int size = 20, form,x = 600,y = 400, color = 0x000000;
 	char c;
 zachistka();
 drawRect(x, y, size, size, 0x000000);
@@ -126,7 +126,7 @@ drawChar('O', 130, 30, 0x000000);
 drawChar('R', 170, 30, 0x000000);
 drawChar('S', 210, 30, 0x000000);
 drawChar(':', 240, 30, 0x000000);
-////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////
 //drawLine (9, 70, 310, 71, 0x000000, 2);
 
 drawRect(50, 122, 50, 50, 0xF1102C);
@@ -151,7 +151,7 @@ drawRect(210, 262, 50, 50, 0x000000);
 	drawChar('S', 20, 366, 0x000000);
 	drawChar('I', 60, 366, 0x000000);
 	drawChar('Z', 100, 366, 0x000000);
-	drawChar('E', 140, 366, 0x000000);	
+	drawChar('E', 140, 366, 0x000000);
 	drawChar(':', 180, 366, 0x000000);
 
 //drawLine (9, 420, 310, 421, 0x000000, 2);
@@ -159,7 +159,7 @@ drawRect(210, 262, 50, 50, 0x000000);
 	drawChar('F', 20, 436, 0x000000);
 	drawChar('O', 60, 436, 0x000000);
 	drawChar('R', 100, 436, 0x000000);
-	drawChar('M', 140, 436, 0x000000);	
+	drawChar('M', 140, 436, 0x000000);
 	drawChar(':', 180, 436, 0x000000);
 
 drawLine (9, 490, 310, 491, 0x5C2E00, 5); // граница кнопок
@@ -175,9 +175,9 @@ drawLine (173, 490, 174, 560, 0x5C2E00, 5); //разделитель кнопо�
 	drawChar('E', 227, 506, 0x000000);
 	drawChar('W', 267, 506, 0x000000);
 
-drawLine (9, 560, 310, 561, 0x5C2E00, 5); //граница инструкции 
+drawLine (9, 560, 310, 561, 0x5C2E00, 5); //граница инструкции
 drawRect (9, 565, 300, 195, 0xffffff); //ИНСТРУКЦИЯ
-change_size(2);
+size = change_size(size, '-');
 change_form(1, size);
 ////////////////////////////////////////////////////////
 while (1){
@@ -206,26 +206,11 @@ while (1){
 	if (c == 'n'){	//M - Очистка листа 78
 		drawRect (312,9,1007,751, 0xffffff); // белое заполнение
 	}
-		
-	if (c == '1'){	//1 - Размер-1 49
-		size = 10;
-		change_size(1);
+	if (c == '3'){	// Размер--
+		size = change_size(size,'-');
 	}
-	if (c == '2'){	//2 - Размер-2 50
-		 size = 20;
-		change_size(2);
-	}
-	if (c == '3'){	//3 - Размер-3 51
-		 size = 30;
-		change_size(3);
-	}
-	if (c == '4'){	//4 - Размер-4 52
-		 size = 40;
-		change_size(4);
-	}
-	if (c == '5'){	//5 - Размер-5 53
-		size = 50;
-		change_size(5);
+	if (c == '4'){	// Размер++
+		size = change_size(size,'+');
 	}
 	if (c == 'S'){	//M - Форма-квадрат 83 квадрат
 		 change_form(1, size);
@@ -257,35 +242,35 @@ drawRect(210, 262, 50, 50, 0x000000);
 	}
 	if (c == 'C'){	// Оранжевый цвет
 		 color = 0xFF7D28;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(130, 122, 180, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Желтый цвет
 		 color = 0xFFD03B;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(210, 122, 260, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Зеленый цвет
 		 color = 0x44B32B;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(50, 122, 100, 242, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Белый цвет
 		  color = 0xffffff;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(130, 122, 180, 242, 0x000000, 3);
 	}
 	if (c == 'C'){	// Синий цвет
 		 color = 0x5459C9;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(210, 122, 260, 242, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Фиолетовый цвет
 		 color = 0x8600C7;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(50, 122, 100, 312, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Розовый цвет
 		 color = 0xC400A6;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(130, 122, 100, 312, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Черный цвет
 		 color = 0x000000;
-		 drawRam(50, 122, 100, 172, 0xffffff, 3);
+		 drawRam(210, 122, 100, 312, 0xffffff, 3);
 	}
 	clearkey();
 }
@@ -412,7 +397,7 @@ void drawChar(char ch, int x, int y, int color) {
 		for (int j = x; j < x + fontWidth * pixelWidth; j += pixelWidth) {
 			if (*p == 1) {
 				drawRect(j, i, pixelWidth, pixelWidth, color);
-			}	
+			}
 			p++;
 		}
 	}
@@ -437,7 +422,15 @@ asm("mov al, 0");
 asm("out 0x60, al");
 }
 
-void change_size(int val, char simb){
+int change_size(int val, char simb){
+	if (simb == '+') {
+		val = val + 10;
+		if (vall > 5) val = 5;
+	}
+	if (simb == '-'){
+		val = val - 10;
+		if (vall < 1) val = 1;
+	}
 		drawRect(230, 366, 42, 42, 0xDCE6F4);
 		if (val == 1)
 			drawChar('1', 230, 366, 0x000000);
@@ -449,6 +442,7 @@ void change_size(int val, char simb){
 			drawChar('4', 230, 366, 0x000000);
 		if (val == 5)
 			drawChar('5', 230, 366, 0x000000);
+		return val;
 }
 
 void change_form(int form, int size) {
