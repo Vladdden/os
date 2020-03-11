@@ -20,8 +20,9 @@ void pause(int);
 void drawLine(int, int, int, int, int, int);
 int paint();
 void clearkey();
-void change_size(int);
+void change_size(int, char);
 void change_form(int, int);
+void clava();
 
 int start()
 {
@@ -436,7 +437,7 @@ asm("mov al, 0");
 asm("out 0x60, al");
 }
 
-void change_size(int val){
+void change_size(int val, char simb){
 		drawRect(230, 366, 42, 42, 0xDCE6F4);
 		if (val == 1)
 			drawChar('1', 230, 366, 0x000000);
@@ -460,13 +461,61 @@ void change_form(int form, int size) {
 
 void clava(){
 	char c;
-	while(true){
+	while(1){
 		readkey(&c);
-		if (c == 'Q'){
+		if (c == 'R'){
 			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('Q', 230, 432, 0x000000);
+			drawChar('R', 230, 432, 0x000000);
+		}
+		if (c == 'O'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('O', 230, 432, 0x000000);
+		}
+		if (c == 'Y'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('Y', 230, 432, 0x000000);
+		}
+		if (c == 'G'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('G', 230, 432, 0x000000);
+		}
+		if (c == 'W'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('W', 230, 432, 0x000000);
+		}
+		if (c == 'L'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('L', 230, 432, 0x000000);
+		}
+		if (c == 'V'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('V', 230, 432, 0x000000);
+		}
+		if (c == 'P'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('P', 230, 432, 0x000000);
 		}
 
+		if (c == 'B'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('B', 230, 432, 0x000000);
+		}
+		if (c == 'E'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('E', 230, 432, 0x000000);
+		}
+		if (c == 'N'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('N', 230, 432, 0x000000);
+		}
+		if (c == 'S'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('S', 230, 432, 0x000000);
+		}
+		if (c == 'C'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('C', 230, 432, 0x000000);
+		}
 
 
 	}
