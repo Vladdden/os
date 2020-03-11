@@ -183,19 +183,19 @@ while (1){
 	readkey(&c);
 	if (c == 'P'){	//P - вниз
 		y++;
-		drawRect(x, y, size, size, 0x000000);
+		drawRect(x, y, size, size, color);
 	}
 	if (c == 'H'){	//H - вверх
 		y--;
-		drawRect(x, y, size, size, 0x000000);
+		drawRect(x, y, size, size, color);
 	}
 	if (c == 'K'){	//K - влево
 		x--;
-		drawRect(x, y, size, size, 0x000000);
+		drawRect(x, y, size, size, color);
 	}
 	if (c == 'M'){	//M - Вправо
 		x++;
-		drawRect(x, y, size, size, 0x000000);
+		drawRect(x, y, size, size, color);
 	}
 	if (c == 'e'){	//M - Выход 69
 		drawLine (173, 490, 174, 560, 0x5C2E00, 5); //разделитель кнопок
@@ -249,32 +249,42 @@ drawRect(50, 262, 50, 50, 0x8600C7);
 drawRect(130, 262, 50, 50, 0xC400A6);
 drawRect(210, 262, 50, 50, 0x000000);
 */
+	//void drawRam(int x1, int y1, int x2, int y2, int color, int size){
 	if (c == 'C'){	// Красный цвет
 		 color = 0xF1102C;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Оранжевый цвет
-		 
+		 color = 0xFF7D28;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Желтый цвет
-		 
+		 color = 0xFFD03B;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Зеленый цвет
-		 
+		 color = 0x44B32B;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Белый цвет
-		  
+		  color = 0xffffff;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Синий цвет
-		 
+		 color = 0x5459C9;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Фиолетовый цвет
-		 
+		 color = 0x8600C7;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Розовый цвет
-		 
+		 color = 0xC400A6;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	if (c == 'C'){	// Черный цвет
-		 
+		 color = 0x000000;
+		 drawRam(50, 122, 100, 172, 0xffffff, 3);
 	}
 	clearkey();
 }
@@ -445,6 +455,19 @@ void change_form(int form, int size) {
 		if (form == 0);//circle
 
 		if (form == 1) //square
-			drawRect(230, 432, size, size, 0x000000);
+			drawRect(230, 432, size, size, color);
 }
 
+void clava(){
+	char c;
+	while(true){
+		readkey(&c);
+		if (c == 'Q'){
+			drawRect(230, 432, 50, 50, 0xDCE6F4);
+			drawChar('Q', 230, 432, 0x000000);
+		}
+
+
+
+	}
+}
