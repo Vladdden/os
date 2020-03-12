@@ -1,10 +1,10 @@
 ﻿const int fontAdrs = 0x9000; //менять если изменять boot.asm // 0x9018, 0x8018
 //const int imgAddress = 0x8000 + 0x2018 + 31 * 5 * 6;
-const int fontCount = 37; //менять если изменять font.c
+const int fontCount = 40; //менять если изменять font.c
 const int fontWidth = 5; //менять если изменять font.c
 const int fontHeight = 6; //менять если изменять font.c
-const int pixelWidth = 7; //менять если хотите
-const int pixelHeight = 7; //менять если хотите
+//const int pixelWidth = 7; //менять если хотите
+//const int pixelHeight = 7; //менять если хотите
 const int width = 1024; //ширина экрана
 const int height = 768; //высота экрана
 
@@ -12,7 +12,7 @@ void setPixel(int, int, int);
 void drawRam(int , int , int , int , int , int);
 void drawRect(int, int, int, int, int);
 void wait(int);
-void drawChar(char, int, int, int);
+void drawChar(char, int, int, int, int);
 void readkey(char *);
 void Resetkb();
 void zachistka();
@@ -28,7 +28,6 @@ void colors();
 
 int start()
 {
-	paint();
 	int i,j,x=120,y=10,val, flag = 1;
 	int tree [9][9]={
 		{0x000000,0x000000,0x000000,0x00ff00,0x00ff00,0x000000,0x000000,0x000000},
@@ -79,13 +78,13 @@ int start()
 	drawRam(225, 388, 785, 460, 0x6B8E23, 5);
 	drawLine(135, 595, 840, 600, 0x6B8E23, 41); //нижний грунт
 
-	drawChar('A', 320, 300, 0xffffff);
-	drawChar('P', 360, 300, 0xffffff);
-	drawChar('P', 400, 300, 0xffffff);
-	drawChar('L', 440, 300, 0xffffff);
-	drawChar('E', 480, 300, 0xffffff);
-	drawChar('O', 560, 300, 0xffffff);
-	drawChar(':', 600, 300, 0xffffff);
+	drawChar('A', 320, 300, 0xffffff, 0);
+	drawChar('P', 360, 300, 0xffffff, 0);
+	drawChar('P', 400, 300, 0xffffff, 0);
+	drawChar('L', 440, 300, 0xffffff, 0);
+	drawChar('E', 480, 300, 0xffffff, 0);
+	drawChar('O', 560, 300, 0xffffff, 0);
+	drawChar('S', 600, 300, 0xffffff, 0);
 
 	x = 235;
 	y = 408;
@@ -108,6 +107,7 @@ int start()
 	pause(100);
 	flag = paint();
 	if (flag != 0) while(1);
+	paint();
 	return 0;
 }
 
@@ -121,13 +121,13 @@ drawRect (9,9,1007,751, 0xffffff); // белое заполнение
 drawRect (9,9,304,751, 0xDCE6F4); //рамка управления
 drawLine (310,4,311,760, 0x5C2E00, 5);
 
-drawChar('C', 10, 30, 0x000000);
-drawChar('O', 50, 30, 0x000000);
-drawChar('L', 90, 30, 0x000000);
-drawChar('O', 130, 30, 0x000000);
-drawChar('R', 170, 30, 0x000000);
-drawChar('S', 210, 30, 0x000000);
-drawChar(':', 240, 30, 0x000000);
+drawChar('C', 10, 30, 0x000000, 0);
+drawChar('O', 50, 30, 0x000000, 0);
+drawChar('L', 90, 30, 0x000000, 0);
+drawChar('O', 130, 30, 0x000000, 0);
+drawChar('R', 170, 30, 0x000000, 0);
+drawChar('S', 210, 30, 0x000000, 0);
+drawChar(':', 240, 30, 0x000000, 0);
 
 colors();
 //////////////////////////////////////////////////////
@@ -153,35 +153,70 @@ drawRect(210, 262, 50, 50, 0x000000);
 //drawLine (9, 280, 310, 281, 0x000000, 2);
 //drawLine (9, 350, 310, 351, 0x000000, 2);
 
-	drawChar('S', 20, 366, 0x000000);
-	drawChar('I', 60, 366, 0x000000);
-	drawChar('Z', 100, 366, 0x000000);
-	drawChar('E', 140, 366, 0x000000);
-	drawChar(':', 180, 366, 0x000000);
+	drawChar('S', 20, 366, 0x000000, 0);
+	drawChar('I', 60, 366, 0x000000, 0);
+	drawChar('Z', 100, 366, 0x000000, 0);
+	drawChar('E', 140, 366, 0x000000, 0);
+	drawChar(':', 180, 366, 0x000000, 0);
 
 //drawLine (9, 420, 310, 421, 0x000000, 2);
 
-	drawChar('F', 20, 436, 0x000000);
-	drawChar('O', 60, 436, 0x000000);
-	drawChar('R', 100, 436, 0x000000);
-	drawChar('M', 140, 436, 0x000000);
-	drawChar(':', 180, 436, 0x000000);
+	drawChar('F', 20, 436, 0x000000, 0);
+	drawChar('O', 60, 436, 0x000000, 0);
+	drawChar('R', 100, 436, 0x000000, 0);
+	drawChar('M', 140, 436, 0x000000, 0);
+	drawChar(':', 180, 436, 0x000000, 0);
 
 drawLine (9, 490, 310, 491, 0x5C2E00, 5); // граница кнопок
 
-	drawChar('E', 10, 506, 0x000000);
-	drawChar('X', 50, 506, 0x000000);
-	drawChar('I', 90, 506, 0x000000);
-	drawChar('T', 130, 506, 0x000000);
+	drawChar('E', 10, 506, 0x000000, 0);
+	drawChar('X', 50, 506, 0x000000, 0);
+	drawChar('I', 90, 506, 0x000000, 0);
+	drawChar('T', 130, 506, 0x000000, 0);
 
 drawLine (173, 490, 174, 560, 0x5C2E00, 5); //разделитель кнопок
 
-	drawChar('N', 187, 506, 0x000000);
-	drawChar('E', 227, 506, 0x000000);
-	drawChar('W', 267, 506, 0x000000);
+	drawChar('N', 187, 506, 0x000000, 0);
+	drawChar('E', 227, 506, 0x000000, 0);
+	drawChar('W', 267, 506, 0x000000, 0);
 
 drawLine (9, 560, 310, 561, 0x5C2E00, 5); //граница инструкции
 drawRect (9, 565, 300, 195, 0xffffff); //ИНСТРУКЦИЯ
+
+	drawChar('C', 10, 570, 0x000000, 1);
+	drawChar('O', 30, 570, 0x000000, 1);
+	drawChar('L', 50, 570, 0x000000, 1);
+	drawChar('O', 70, 570, 0x000000, 1);
+	drawChar('R', 90, 570, 0x000000, 1);
+	drawChar('S', 110, 570, 0x000000, 1);
+	drawChar(':', 130, 570, 0x000000, 1);
+	drawChar('1', 160, 570, 0x000000, 1);
+	drawChar('-', 180, 570, 0x000000, 1);
+	drawChar('9', 200, 570, 0x000000, 1);
+
+
+	drawChar('S', 12, 600, 0x000000, 1);
+	drawChar('I', 30, 600, 0x000000, 1);
+	drawChar('Z', 50, 600, 0x000000, 1);
+	drawChar('E', 70, 600, 0x000000, 1);
+	drawChar(':', 90, 600, 0x000000, 1);
+	drawChar('<', 120, 600, 0x000000, 1);
+	drawChar('>', 140, 600, 0x000000, 1);
+/*
+	drawChar('N', 10, 630, 0x000000, 1);
+	drawChar('E', 30, 630, 0x000000, 1);
+	drawChar('W', 50, 630, 0x000000, 1);
+	drawChar(':', 70, 630, 0x000000, 1);
+	drawChar('N', 100, 630, 0x000000, 1);
+
+
+	drawChar('E', 10, 660, 0x000000, 1);
+	drawChar('X', 30, 660, 0x000000, 1);
+	drawChar('I', 50, 660, 0x000000, 1);
+	drawChar('T', 70, 660, 0x000000, 1);
+	drawChar(':', 90, 660, 0x000000, 1);
+	drawChar('E', 120, 660, 0x000000, 1);
+*/
 size = change_size(size, '-');
 change_form(1, size, color);
 ////////////////////////////////////////////////////////
@@ -208,10 +243,20 @@ while (1){
 		if ((x + size) >= 1016) x = 1016 - size;
 		drawRect(x, y, size, size, color);
 	}
-	if (c == 0x12){	// Выход 69
-		drawLine (173, 490, 174, 560, 0x5C2E00, 5); //разделитель кнопок
-		drawLine (9, 490, 310, 491, 0x5C2E00, 5); // граница кнопок
-		drawRect (312,9,1007,751, 0xffffff);
+	if (c == 0x01){	// Выход 69
+		drawRect (1,1,1023,767, 0x000000);
+		/*drawChar('G', 10, 50, 0x000000, 0);
+		drawChar('O', 50, 50, 0x000000, 0);
+		drawChar('O', 90, 50, 0x000000, 0);
+		drawChar('D', 130, 50, 0x000000, 0);
+		drawChar('B', 170, 50, 0x000000, 0);
+		drawChar('Y', 210, 50, 0x000000, 0);
+		drawChar('E', 240, 50, 0x000000, 0);
+		
+		drawChar(':', 300, 50, 0x000000, 0);
+		drawChar('>', 340, 50, 0x000000, 0);*/
+		pause(10000);
+		return 0;
 	}
 	if (c == 0x31){	// Очистка листа 78
 		drawRect (315,9,701,751, 0xffffff); // белое заполнение 315-1016  15-745
@@ -351,10 +396,17 @@ m=m + 1;
 }
 
 
-void drawChar(char ch, int x, int y, int color) {
-	int positionChar;
+void drawChar(char ch, int x, int y, int color, int flag) {
+	int positionChar, pixelWidth, pixelHeight;
 	char *p = fontAdrs + 0x3018;//3018
-// ЗАМЕНИТЬ НА СВИЧ
+	if (flag == 1) {
+		pixelWidth = 3;
+		pixelHeight = 3;
+	}
+	else {
+		pixelWidth = 7; 
+		pixelHeight = 7; 
+	}
 	if ((int)ch == 65) positionChar = 0;
 	if ((int)ch == 66) positionChar = 1;
 	if ((int)ch == 67) positionChar = 2;
@@ -392,6 +444,9 @@ void drawChar(char ch, int x, int y, int color) {
 	if ((int)ch == 57) positionChar = 34;
 	if ((int)ch == 58) positionChar = 36;
 	if ((int)ch == 48) positionChar = 35;
+	if ((int)ch == 45) positionChar = 37;
+	if ((int)ch == 60) positionChar = 38;
+	if ((int)ch == 62) positionChar = 39;
 
 
 	for (int i = 0; i < positionChar; i++) p += fontWidth * fontHeight;
@@ -436,15 +491,15 @@ int change_size(int val, char simb){
 	}
 		drawRect(230, 366, 78, 42, 0xDCE6F4);
 		if (val == 10)
-			drawChar('1', 230, 366, 0x000000);
+			drawChar('1', 230, 366, 0x000000, 0);
 		if (val == 20)
-			drawChar('2', 230, 366, 0x000000);
+			drawChar('2', 230, 366, 0x000000, 0);
 		if (val == 30)
-			drawChar('3', 230, 366, 0x000000);
+			drawChar('3', 230, 366, 0x000000, 0);
 		if (val == 40)
-			drawChar('4', 230, 366, 0x000000);
+			drawChar('4', 230, 366, 0x000000, 0);
 		if (val == 50)
-			drawChar('5', 230, 366, 0x000000);
+			drawChar('5', 230, 366, 0x000000, 0);
 		return val;
 }
 
@@ -456,44 +511,6 @@ void change_form(int form, int size, int color) {
 			drawRect(230, 432, size, size, color);
 }
 
-void clava(){
-	char c;
-	while(1){
-		readkey(&c);
-		if (c == 'Q'){
-			//drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('Q', 230, 432, 0x000000);
-		}
-		if (c == 97){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('A', 230, 432, 0x000000);
-		}
-		if (c == 98){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('B', 230, 432, 0x000000);
-		}
-		if (c == 'R'){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('R', 230, 432, 0x000000);
-		}
-		if (c == 'T'){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('T', 230, 432, 0x000000);
-		}
-		if (c == 'Y'){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('Y', 230, 432, 0x000000);
-		}
-		if (c == 'V'){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('V', 230, 432, 0x000000);
-		}
-		if (c == 'U'){
-			drawRect(230, 432, 50, 50, 0xDCE6F4);
-			drawChar('U', 230, 432, 0x000000);
-		}
-	}
-}
 /*
 void drawElipse(int cx,int cy,int h,int w,int color){
 int hh = h * h;
