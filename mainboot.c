@@ -190,19 +190,22 @@ while (1){
 	readkey(&c);
 	if (c == 0x50){	//P - вниз
 		y++;
+		if ((y + size) >= 760) y = 760 - size;
 		drawRect(x, y, size, size, color);
 	}
 	if (c == 0x48){	//H - вверх
 		y--;
-		//if (y<)
+		if (y < 9) y = 9;
 		drawRect(x, y, size, size, color);
 	}
 	if (c == 0x4B){	//K - влево
 		x--;
+		if (x < 315) x = 315;
 		drawRect(x, y, size, size, color);
 	}
 	if (c == 0x4D){	//M - Вправо
 		x++;
+		if ((x + size) >= 1016) x = 1016 - size;
 		drawRect(x, y, size, size, color);
 	}
 	if (c == 0x12){	// Выход 69
